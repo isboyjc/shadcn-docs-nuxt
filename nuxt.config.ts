@@ -36,6 +36,9 @@ export default defineNuxtConfig({
     join(currentDir, './assets/css/themes.css'),
   ],
   content: {
+    preview: {
+      api: 'https://api.nuxt.studio'
+    },
     documentDriven: true,
     highlight: {
       theme: {

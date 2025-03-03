@@ -6,6 +6,7 @@ const currentDir = dirname(fileURLToPath(import.meta.url));
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
+    '@nuxthq/studio',
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
     '@vueuse/nuxt',
@@ -37,7 +38,7 @@ export default defineNuxtConfig({
   ],
   content: {
     preview: {
-      api: 'https://api.nuxt.studio'
+      api: 'https://api.nuxt.studio',
     },
     documentDriven: true,
     highlight: {

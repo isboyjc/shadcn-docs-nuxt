@@ -54,15 +54,15 @@ export default defineAppConfig({
         }],
       }, {
         title: '社区',
-        to: '/community',
+        to: '/posts',
         target: '_self',
-        showLinkIcon: false
-      },{
+        showLinkIcon: false,
+      }, {
         title: '资讯',
         to: '/information',
         target: '_self',
-        showLinkIcon: false
-      },{
+        showLinkIcon: false,
+      }, {
         title: '导航',
         to: '/',
         target: '_blank',
@@ -167,7 +167,7 @@ export default defineAppConfig({
       enable: true,
       enableInMobile: false,
       enableInHomepage: false,
-      title: 'On This Page',
+      title: '目录',
       links: [{
         title: 'Star on GitHub',
         icon: 'lucide:star',

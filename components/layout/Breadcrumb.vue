@@ -4,9 +4,9 @@
       <template v-for="(breadcrumb, index) in breadcrumbs" :key="breadcrumb.title">
         <UiBreadcrumbItem>
           <NuxtLink
-            :href="index === 0 ? undefined : breadcrumb.href"
+            :href="breadcrumb.href"
             class="transition-colors hover:text-foreground"
-            :class="{ 'text-foreground': index === breadcrumbs.length - 1 }"
+            :class="{ 'font-medium text-primary': index === breadcrumbs.length - 1 }"
           >
             {{ breadcrumb.title }}
           </NuxtLink>

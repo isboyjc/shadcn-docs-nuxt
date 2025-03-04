@@ -3,7 +3,7 @@
     <ProseH1>
       {{ title }}
     </ProseH1>
-    <p class="pt-1 text-lg text-muted-foreground">
+    <p class="pt-3 text-lg text-muted-foreground">
       {{ description }}
     </p>
 

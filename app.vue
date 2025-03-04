@@ -3,7 +3,7 @@
   <LayoutBanner v-if="config.banner.enable" />
   <LayoutHeader />
 
-  <div v-if="page && route.path !== '/'" class="min-h-screen border-b">
+  <div v-if="page && !isWhiteListPath(route.path)" class="min-h-screen border-b">
     <div
       class="flex-1 items-start px-4 md:grid md:gap-6 md:px-8 lg:gap-10"
       :class="[
@@ -24,7 +24,23 @@
 </template>
 
 <script setup lang="ts">
-import Toaster from '@/components/ui/toast/Toaster.vue';
+import { Toaster } from '@/components/ui/toast';
+
+// 白名单路径
+const whiteList = ['/information', '/posts', '/sites', '/'];
+
+// 检查路径是否在白名单中（完全匹配或前缀匹配）
+function isWhiteListPath(path: string) {
+  return whiteList.some((whitePath) => {
+    // 完全匹配
+    if (path === whitePath)
+      return true;
+    // 前缀匹配（排除根路径'/'，避免匹配所有路径）
+    if (whitePath !== '/' && path.startsWith(whitePath))
+      return true;
+    return false;
+  });
+}
 
 const { page } = useContent();
 const config = useConfig();

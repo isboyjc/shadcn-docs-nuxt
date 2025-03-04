@@ -39,8 +39,14 @@
 defineProps<{ isMobile: boolean }>();
 
 const { navDirFromPath } = useContentHelpers();
-const { navigation } = useContent();
+const { navigation: navigationSource } = useContent();
 const config = useConfig();
+
+// 白名单
+const whiteList = ['/information', '/posts', '/sites'];
+const navigation = computed(() => {
+  return navigationSource.value.filter(v => !whiteList.includes(v._path));
+});
 
 const tree = computed(() => {
   const route = useRoute();

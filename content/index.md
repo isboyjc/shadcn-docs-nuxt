@@ -6,11 +6,11 @@ navigation: false
 ::hero
 ---
 announcement:
-  title: 'Code Tree Component'
-  icon: lucide:folder-code
-  to: /components/docs/code-tree
+  title: '最好的 Cursor 教程'
+  icon: vscode-icons:file-type-cursorrules
+  to: /cursor/introduction
 actions:
-  - name: Get Started
+  - name: 立即探索
     to: /getting-started/introduction
   - name: GitHub
     variant: outline
@@ -19,17 +19,17 @@ actions:
   - name: Sponsor
     variant: outline
     target: _blank
-    to: https://ko-fi.com/ztl_uwu
+    to: https://ko-fi.com
     leftIcon: 'lucide:heart'
 ---
 
 #title
-Effortless and Beautiful :br Docs Template.
+从代码到通用智能，从独行到共创未来
 
 #description
-Beautifully designed Nuxt Content template built with shadcn-vue. :br Customizable. Compatible. Open Source.
+4AGI 是通往通用人工智能（AGI）的进化社区。我们从代码实践出发，探索技术边界的突破；打破个体能力局限，构建 AI 时代的共生网络。4AGI，邀您共同智启未来 —— AGI 的变革，始于每一次代码的迭代、每一次思维的碰撞，更始于您此刻的加入。
 ::
 
 ::div{class="border rounded-lg shadow-md"}
-  :iframe{src="/getting-started/introduction" height="700" width="100%" class="rounded-lg" scrolling="no" frameborder="0"}
+  :iframe{src="/cursor/introduction" height="700" width="100%" class="rounded-lg" scrolling="no" frameborder="0"}
 ::

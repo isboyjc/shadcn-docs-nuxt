@@ -2,14 +2,14 @@
   <div class="grid gap-6">
     <div class="grid space-y-1">
       <h1 class="text-lg font-semibold text-foreground">
-        Customize
+        定制
       </h1>
       <p class="text-sm text-muted-foreground">
-        Pick a style and color for the docs.
+        定制您喜欢的样式和颜色。
       </p>
     </div>
     <div class="space-y-1.5">
-      <UiLabel>Color</UiLabel>
+      <UiLabel>颜色</UiLabel>
       <div class="grid grid-cols-3 gap-2">
         <template v-for="color in allColors" :key="color">
           <UiButton
@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="space-y-1.5">
-      <UiLabel>Radius</UiLabel>
+      <UiLabel>圆角</UiLabel>
       <div class="grid grid-cols-5 gap-2">
         <template v-for="r in RADII" :key="r">
           <UiButton
@@ -42,7 +42,7 @@
       </div>
     </div>
     <div v-if="darkModeToggle" class="space-y-1.5">
-      <UiLabel>Theme</UiLabel>
+      <UiLabel>主题</UiLabel>
       <div class="grid grid-cols-3 gap-2">
         <UiButton
           class="justify-center gap-2"

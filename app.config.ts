@@ -1,16 +1,16 @@
 export default defineAppConfig({
-  shadcnDocs: {
+  custom: {
     site: {
-      name: 'shadcn-docs',
-      description: 'Beautifully designed Nuxt Content template built with shadcn-vue. Customizable. Compatible. Open Source.',
+      name: '4AGI',
+      description: '从代码到通用，从个体到共生，未来已来，从 4AGI 开始！',
       ogImage: '/hero.png',
       ogImageComponent: 'ShadcnDocs',
       ogImageColor: 'light',
-      umami: {
-        enable: true,
-        src: 'https://cloud.umami.is/script.js',
-        dataWebsiteId: 'd793fbf3-461e-4e26-9ec9-4e9141df96ee',
-      },
+      // umami: {
+      //   enable: true,
+      //   src: 'https://cloud.umami.is/script.js',
+      //   dataWebsiteId: '',
+      // },
     },
     theme: {
       customizable: true,
@@ -20,13 +20,13 @@ export default defineAppConfig({
     banner: {
       enable: false,
       showClose: true,
-      content: 'Welcome to **shadcn-docs-nuxt**',
-      to: 'https://github.com/ZTL-UwU/shadcn-docs-nuxt',
+      content: 'Welcome to **4AGI**',
+      to: 'https://github.com/4agi-net/4agi',
       target: '_blank',
       border: true,
     },
     header: {
-      title: 'shadcn-docs',
+      title: '4AGI',
       showTitle: true,
       logo: {
         light: '/logo.svg',
@@ -34,51 +34,38 @@ export default defineAppConfig({
       },
       darkModeToggle: true,
       nav: [{
-        title: 'Docs',
+        title: '探索',
         links: [{
-          title: 'Getting Started',
-          to: '/getting-started',
-          description: 'Start building your document with shadcn-docs-nuxt',
-          icon: 'lucide:rocket',
-        }, {
-          title: 'Components',
-          to: '/components/prose',
-          description: 'Explore available UI components and usage examples.',
+          title: 'Prompt Engineering',
+          to: '/prompt-engineering/introduction',
+          description: '提示词工程（Prompt Engineering）是您通往通用智能的必经之路',
           icon: 'lucide:box',
         }, {
-          title: 'API',
-          to: '/api/configuration/shadcn-docs',
-          description: 'Discover the configurations and exposed APIs.',
+          title: 'Cursor 从入门到精通',
+          to: '/cursor/about',
+          description: '一款强大的 AI 编辑器，这将是一份您上手 Cursor 的最好教程',
+          icon: 'vscode-icons:file-type-cursorrules',
+        }, {
+          title: 'Trae 从入门到实践',
+          to: '/trae/about',
+          description: '国内出品的第一款桌面端 AI IDE，快来上手学习吧！',
           target: '_self',
-          icon: 'lucide:code',
+          icon: '4agi:trae',
         }],
       }, {
-        title: 'Credits',
-        links: [{
-          title: 'shadcn-ui',
-          to: 'https://ui.shadcn.com/',
-          description: 'For the beautiful component design & docs design',
-          target: '_blank',
-        }, {
-          title: 'shadcn-vue',
-          to: 'https://www.shadcn-vue.com/',
-          description: 'For the vue port of shadcn-ui & some docs component source',
-          target: '_blank',
-        }, {
-          title: 'Docus',
-          to: 'https://docus.dev/',
-          description: 'For inspiration & some docs component source',
-          target: '_blank',
-        }, {
-          title: 'Nuxt Content',
-          to: 'https://content.nuxt.com/',
-          description: 'Content made easy for Vue Developers',
-          target: '_blank',
-        }],
-      }, {
-        title: 'Use This Template',
-        to: '/getting-started/installation',
+        title: '社区',
+        to: '/community',
         target: '_self',
+        showLinkIcon: false
+      },{
+        title: '资讯',
+        to: '/information',
+        target: '_self',
+        showLinkIcon: false
+      },{
+        title: '导航',
+        to: '/',
+        target: '_blank',
         showLinkIcon: true,
       }],
       links: [{
@@ -88,8 +75,8 @@ export default defineAppConfig({
       }],
       githubButton: {
         enable: true,
-        owner: 'ZTL-UwU',
-        repo: 'shadcn-docs-nuxt',
+        owner: 'isboyjc',
+        repo: '4agi',
         showStarCount: true,
         target: '_blank',
         icon: 'lucide:github',
@@ -108,7 +95,7 @@ export default defineAppConfig({
       codeCopyIcon: 'lucide:copy',
       editLink: {
         enable: true,
-        pattern: 'https://github.com/ZTL-UwU/shadcn-docs-nuxt/edit/main/content/:path',
+        pattern: 'https://github.com/4agi-net/4agi/edit/main/content/:path',
         text: 'Edit this page',
         icon: 'lucide:square-pen',
         placement: ['docsFooter', 'toc'],
@@ -160,23 +147,19 @@ export default defineAppConfig({
       },
     },
     footer: {
-      credits: 'Made with ❤️ by [**Tony Zhang**](https://github.com/ZTL-UwU/)',
+      credits: 'Made with ❤️ by [**4agi.net**](https://github.com/4agi-net/)',
       links: [{
         icon: 'lucide:heart',
-        title: 'Sponsor Me',
-        to: 'https://ko-fi.com/ztl_uwu',
+        title: 'Sponsor Us',
+        to: 'https://ko-fi.com/4agi',
         target: '_blank',
       }, {
         icon: 'lucide:twitter',
-        to: 'https://x.com/ZTL_UwU',
-        target: '_blank',
-      }, {
-        icon: 'lucide-lab:butterfly',
-        to: 'https://bsky.app/profile/ztl-uwu.bsky.social',
+        to: 'https://x.com/4agi',
         target: '_blank',
       }, {
         icon: 'lucide:github',
-        to: 'https://github.com/ZTL-UwU/shadcn-docs-nuxt',
+        to: 'https://github.com/4agi-net/4agi',
         target: '_blank',
       }],
     },
@@ -188,13 +171,13 @@ export default defineAppConfig({
       links: [{
         title: 'Star on GitHub',
         icon: 'lucide:star',
-        to: 'https://github.com/ZTL-UwU/shadcn-docs-nuxt',
+        to: 'https://github.com/4agi-net/4agi',
         target: '_blank',
         showLinkIcon: true,
       }, {
         title: 'Create Issues',
         icon: 'lucide:circle-dot',
-        to: 'https://github.com/ZTL-UwU/shadcn-docs-nuxt/issues',
+        to: 'https://github.com/4agi-net/4agi/issues',
         target: '_blank',
         showLinkIcon: true,
       }],
@@ -204,8 +187,8 @@ export default defineAppConfig({
         disableInMobile: false,
         fallback: false,
         fallbackMessage: 'Please support us by disabling your ad blocker.',
-        code: 'CW7ITKJN',
-        placement: 'shadcn-docs-nuxtvercelapp',
+        code: '',
+        placement: '4agi',
         format: 'cover',
       },
     },

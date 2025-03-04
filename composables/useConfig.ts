@@ -28,14 +28,14 @@ const defaultConfig: DefaultConfig = {
   banner: {
     enable: false,
     showClose: true,
-    content: 'Welcome to **shadcn-docs-nuxt**',
+    content: 'Welcome to **4AGI**',
     to: '',
     target: '_blank',
     border: true,
   },
   header: {
     showLoadingIndicator: true,
-    title: 'shadcn-docs',
+    title: '4AGI',
     showTitle: true,
     logo: {
       light: '/logo.svg',
@@ -155,7 +155,7 @@ const defaultConfig: DefaultConfig = {
 };
 
 export function useConfig() {
-  const appConfig = computed(() => useAppConfig()?.shadcnDocs || {});
+  const appConfig = computed(() => useAppConfig()?.custom || {});
 
   const { navKeyFromPath } = useContentHelpers();
   const { navigation, page } = useContent();

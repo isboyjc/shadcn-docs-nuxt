@@ -38,7 +38,7 @@
         v-else
         :key="page._id"
         :value="page"
-        :data="appConfig.shadcnDocs.data"
+        :data="appConfig.custom.data"
         class="docs-content"
       />
 

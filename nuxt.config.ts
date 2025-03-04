@@ -37,9 +37,6 @@ export default defineNuxtConfig({
     join(currentDir, './assets/css/themes.css'),
   ],
   content: {
-    preview: {
-      api: 'https://api.nuxt.studio',
-    },
     documentDriven: true,
     highlight: {
       theme: {
@@ -70,9 +67,19 @@ export default defineNuxtConfig({
   },
   icon: {
     clientBundle: {
+      icons: [
+        '4agi:trae',
+      ],
       scan: true,
       sizeLimitKb: 512,
+      includeCustomCollections: true,
     },
+    customCollections: [
+      {
+        prefix: '4agi',
+        dir: './assets/icons',
+      },
+    ],
   },
   typescript: {
     tsConfig: {

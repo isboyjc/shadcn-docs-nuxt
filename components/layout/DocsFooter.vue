@@ -6,7 +6,7 @@
       <!-- Right: Back to Top Button -->
       <LayoutBackToTop />
     </div>
-    <LayoutPrevNext />
+    <LayoutPrevNext v-if="isDocsPath" path="/docs" />
     <div class="flex">
       <LayoutCarbonAds v-if="!isDesktop && carbonAdsEnabled" class="mx-auto" />
     </div>
@@ -16,8 +16,12 @@
 <script setup lang="ts">
 const { carbonAds } = useConfig().value.toc;
 const isDesktop = useMediaQuery('(min-width: 1024px)');
+const route = useRoute();
 
 const carbonAdsEnabled = computed(
   () => carbonAds.enable && !carbonAds.disableInMobile && !(import.meta.dev && carbonAds.disableInDev),
 );
+
+// 检查当前路径是否在 /docs 目录下
+const isDocsPath = computed(() => route.path.startsWith('/docs'));
 </script>

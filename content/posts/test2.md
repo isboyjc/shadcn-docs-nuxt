@@ -10,19 +10,17 @@ authors:
     username: atinu
   - name: Isboyjc
     avatar:
-      src: '/user/isboyjc.png'
+      src: '/users/isboyjc.png'
     to: https://x.com/isboyjc
     username: isboyjc
 badges:
-  - value: Nuxt UI Pro
+  - value: B 站视频
+    icon: simple-icons:bilibili
     to: https://ui.nuxt.com/pro/prose/card
     target: _blank
-  - value: Docus
+  - value: Youtube 视频
+    icon: tdesign:logo-youtube
     to: https://docus.dev/api/components#card
-    target: _blank
-  - value: Source
-    icon: lucide:code
-    to: https://github.com/ZTL-UwU/shadcn-docs-nuxt/blob/main/components/content/Card.vue
     target: _blank
 date: 2025-02-03
 category: AI编程

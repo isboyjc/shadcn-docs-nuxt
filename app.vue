@@ -12,7 +12,8 @@
       ]"
     >
       <aside v-if="page.aside ?? true" class="fixed top-[102px] z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto md:sticky md:top-[60px] md:block">
-        <LayoutAside :is-mobile="false" />
+        <LayoutAsideInformation v-if="route.path.startsWith('/information')" :is-mobile="false" />
+        <LayoutAside v-else :is-mobile="false" />
       </aside>
       <NuxtPage />
     </div>
@@ -26,20 +27,17 @@
 <script setup lang="ts">
 import { Toaster } from '@/components/ui/toast';
 
-// 白名单路径
-const whiteList = ['/information', '/posts', '/sites', '/'];
+// 白名单路径正则
+const whiteList = [
+  /^\/information$/,  // 仅匹配 /information
+  /^\/posts.*/,       // 匹配 /posts 及其子路径
+  /^\/sites.*/,       // 匹配 /sites 及其子路径
+  /^\/$/             // 仅匹配根路径
+];
 
-// 检查路径是否在白名单中（完全匹配或前缀匹配）
+// 检查路径是否在白名单中
 function isWhiteListPath(path: string) {
-  return whiteList.some((whitePath) => {
-    // 完全匹配
-    if (path === whitePath)
-      return true;
-    // 前缀匹配（排除根路径'/'，避免匹配所有路径）
-    if (whitePath !== '/' && path.startsWith(whitePath))
-      return true;
-    return false;
-  });
+  return whiteList.some(pattern => pattern.test(path));
 }
 
 const { page } = useContent();

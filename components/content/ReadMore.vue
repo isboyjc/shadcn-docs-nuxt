@@ -1,6 +1,6 @@
 <template>
   <Alert :to :target :icon>
-    Read more at <span class="font-semibold">{{ computedTitle }}</span>
+    阅读更多 <span class="font-semibold">{{ computedTitle }}</span>
   </Alert>
 </template>
 

@@ -4,7 +4,7 @@ export default defineAppConfig({
       name: '4AGI',
       description: '从代码到通用，从个体到共生，未来已来，从 4AGI 开始！',
       ogImage: '/hero.png',
-      ogImageComponent: 'ShadcnDocs',
+      ogImageComponent: 'FourAgi',
       ogImageColor: 'light',
       // umami: {
       //   enable: true,
@@ -14,8 +14,8 @@ export default defineAppConfig({
     },
     theme: {
       customizable: true,
-      color: 'zinc',
-      radius: 0.5,
+      color: 'violet',
+      radius: 0.75,
     },
     banner: {
       enable: false,
@@ -37,17 +37,17 @@ export default defineAppConfig({
         title: '探索',
         links: [{
           title: 'Prompt Engineering',
-          to: '/prompt-engineering/introduction',
+          to: '/docs/prompt-engineering/introduction',
           description: '提示词工程（Prompt Engineering）是您通往通用智能的必经之路',
           icon: 'lucide:box',
         }, {
           title: 'Cursor 从入门到精通',
-          to: '/cursor/about',
+          to: '/docs/cursor/about',
           description: '一款强大的 AI 编辑器，这将是一份您上手 Cursor 的最好教程',
           icon: 'vscode-icons:file-type-cursorrules',
         }, {
           title: 'Trae 从入门到实践',
-          to: '/trae/about',
+          to: '/docs/trae/about',
           description: '国内出品的第一款桌面端 AI IDE，快来上手学习吧！',
           target: '_self',
           icon: '4agi:trae',

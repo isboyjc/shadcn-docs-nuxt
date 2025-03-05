@@ -12,7 +12,7 @@ const defaultConfig: DefaultConfig = {
     name: 'shadcn-docs',
     description: 'Beautifully designed Nuxt Content template built with shadcn-vue. Customizable. Compatible. Open Source.',
     ogImage: '/hero.png',
-    ogImageComponent: 'ShadcnDocs',
+    ogImageComponent: 'FourAgi',
     ogImageColor: 'light',
     umami: {
       enable: false,

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <NuxtLink v-if="logo.light && logo.dark" to="/" class="flex">
-      <NuxtImg :src="logo.light" class="h-7 dark:hidden" />
-      <NuxtImg :src="logo.dark" class="hidden h-7 dark:block" />
-      <span v-if="showTitle && title" class="ml-3 self-center font-bold">
+    <NuxtLink v-if="logo.light && logo.dark" to="/" class="flex items-center justify-center">
+      <NuxtImg :src="logo.light" class="h-6 dark:hidden" />
+      <NuxtImg :src="logo.dark" class="hidden h-6 dark:block" />
+      <span v-if="showTitle && title" class="ml-2 self-center font-mono text-[1.25rem] font-bold">
         {{ title }}
       </span>
     </NuxtLink>

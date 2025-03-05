@@ -41,20 +41,27 @@ defineProps<{ isMobile: boolean }>();
 const { navDirFromPath } = useContentHelpers();
 const { navigation: navigationSource } = useContent();
 const config = useConfig();
+const route = useRoute()
 
-// 白名单
-const whiteList = ['/information', '/posts', '/sites'];
 const navigation = computed(() => {
-  return navigationSource.value.filter(v => !whiteList.includes(v._path));
+  console.log(navigationSource.value)
+  let docs = []
+  navigationSource.value.forEach(v => {
+    if(v._path === '/docs'){
+      docs.push(...v.children)
+    }
+  })
+  return docs
 });
+console.log(navigation.value)
 
 const tree = computed(() => {
   const route = useRoute();
   const path = route.path.split('/');
   if (config.value.aside.useLevel) {
-    const leveledPath = path.splice(0, 2).join('/');
+    const leveledPath = path.splice(0, 3).join('/');
 
-    const dir = navDirFromPath(leveledPath, navigation.value);
+    const dir = navDirFromPath(leveledPath, navigationSource.value);
     return dir ?? [];
   }
 

@@ -20,13 +20,10 @@
     >
       <div class="border-b-solid w-full border-b border-b-border pb-5">
         <LayoutBreadcrumb v-if="page?.body && config.main.breadCrumb && (page.breadcrumb ?? true)" class="mb-4" />
-        <div class="mb-2 mt-8 flex items-center space-x-2">
-          <!-- <UiBadge variant="outline">
-            {{ page?.category || '无分类' }}
-          </UiBadge> -->
+        <!-- <div class="mb-2 mt-8 flex items-center space-x-2">
           <span class="text-sm font-bold text-primary">{{ page?.category || '无分类' }}</span>
           <span class="text-sm text-muted-foreground">&middot;&nbsp;&nbsp;<time>{{ page.date }}</time></span>
-        </div>
+        </div> -->
         <LayoutTitle
           v-if="config.main.showTitle"
           :title="page?.title"

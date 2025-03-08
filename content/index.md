@@ -8,7 +8,7 @@ navigation: false
 announcement:
   title: '最好的 Cursor 教程'
   icon: vscode-icons:file-type-cursorrules
-  to: /cursor/introduction
+  to: /docs/cursor/introduction
 actions:
   - name: 立即探索
     to: /getting-started/introduction
@@ -31,5 +31,5 @@ actions:
 ::
 
 ::div{class="border rounded-lg shadow-md"}
-  :iframe{src="/cursor/introduction" height="700" width="100%" class="rounded-lg" scrolling="no" frameborder="0"}
+  :iframe{src="/docs/cursor/introduction" height="700" width="100%" class="rounded-lg" scrolling="no" frameborder="0"}
 ::

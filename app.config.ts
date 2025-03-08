@@ -1,8 +1,10 @@
+const description = '从代码到通用智能，从独行到共创未来，未来已来，从 4AGI 开始！';
+
 export default defineAppConfig({
   custom: {
     site: {
       name: '4AGI',
-      description: '从代码到通用，从个体到共生，未来已来，从 4AGI 开始！',
+      description,
       ogImage: '/hero.png',
       ogImageComponent: 'FourAgi',
       ogImageColor: 'light',
@@ -64,9 +66,14 @@ export default defineAppConfig({
         showLinkIcon: false,
       }, {
         title: '导航',
-        to: '/',
-        target: '_blank',
-        showLinkIcon: true,
+        to: '/sites',
+        target: '_self',
+        showLinkIcon: false,
+      }, {
+        title: 'MCPs',
+        to: '/mcps',
+        target: '_self',
+        showLinkIcon: false,
       }],
       links: [{
         icon: 'lucide:coffee',
@@ -147,21 +154,78 @@ export default defineAppConfig({
       },
     },
     footer: {
-      credits: 'Made with ❤️ by [**4agi.net**](https://github.com/4agi-net/)',
+      copyright: '© 2024 4AGI. All rights reserved.',
+      description,
       links: [{
-        icon: 'lucide:heart',
-        title: 'Sponsor Us',
-        to: 'https://ko-fi.com/4agi',
+        icon: 'lucide:github',
+        to: 'https://github.com/4agi-net/4agi',
         target: '_blank',
       }, {
         icon: 'lucide:twitter',
         to: 'https://x.com/4agi',
         target: '_blank',
       }, {
-        icon: 'lucide:github',
-        to: 'https://github.com/4agi-net/4agi',
+        icon: 'lucide:heart',
+        to: 'https://ko-fi.com/4agi',
         target: '_blank',
       }],
+      linkGroups: [
+        {
+          title: '站点',
+          links: [
+            {
+              title: '导航',
+              to: '/sites',
+              target: '_self',
+            },
+            {
+              title: '资讯',
+              to: '/information',
+              target: '_self',
+            },
+            {
+              title: '社区',
+              to: '/posts',
+              target: '_self',
+            },
+          ],
+        },
+        {
+          title: '探索',
+          links: [
+            {
+              title: 'Prompt',
+              to: '/docs/prompt-engineering/introduction',
+              target: '_self',
+            },
+            {
+              title: 'Cursor',
+              to: '/docs/cursor/about',
+              target: '_self',
+            },
+            {
+              title: 'Trae',
+              to: '/docs/trae/about',
+              target: '_self',
+            },
+          ],
+        },
+        {
+          title: '团队',
+          links: [
+            {
+              title: '关于我们',
+              to: '/about',
+              target: '_self',
+            },
+            {
+              title: '联系我们',
+              to: '/contact',
+              target: '_self',
+            },
+          ],
+        },
+      ],
     },
     toc: {
       enable: true,

@@ -2,6 +2,7 @@
 title: 这是一个测试稿件
 description: 这是一个测试稿件的说明这是一个测试稿件的说明这是一个测试稿件的说明这是一个测试稿件的说明这是一个测试稿件的说明这是一个测试稿件的说明这是一个测试稿件的说明
 image: '/banner-preview.png'
+icon: iconoir:post
 authors:
   - name: Sebastien
     avatar:

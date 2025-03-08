@@ -14,10 +14,10 @@
     <div class="relative">
       <!-- 时间线轴线 -->
       <div
-        class="absolute inset-y-4 left-[19px] w-[2px] bg-gradient-to-b from-primary/50 via-primary to-primary/50 sm:left-[19px] lg:left-1/2 lg:-translate-x-1/2"
+        class="absolute inset-y-4 left-[19px] w-[2px]  sm:left-[19px] lg:left-1/2 lg:-translate-x-1/2"
       >
         <!-- 添加轴线动画效果 -->
-        <div class="animate-glow absolute inset-0 bg-primary/20" />
+        <div class="absolute inset-0 bg-primary/10" />
       </div>
 
       <!-- 时间线内容 -->
@@ -191,24 +191,23 @@ const pageData = ref({
 });
 
 const { data } = useAsyncData('content', async () => {
-  return queryContent('/').find()
+  return queryContent('/').find();
 });
 
 const information = computed(() => {
-  if (!data.value) return []
+  if (!data.value)
+    return [];
 
-  let informationData = []
+  let informationData = [];
 
-  data.value.forEach(v => {
-    if(v._path?.startsWith('/information') && v._type == 'markdown') {
-      informationData.push(v)
+  data.value.forEach((v) => {
+    if (v._path?.startsWith('/information') && v._type == 'markdown') {
+      informationData.push(v);
     }
-  })
-  
-  return informationData
-})
+  });
 
-console.log(information.value);
+  return informationData;
+});
 
 // 筛选方法
 function filterCardsWithH2(data, parentPath) {
@@ -234,8 +233,8 @@ const infoList = computed(() => {
       link: v._path,
       items: arr,
     };
-  }).sort((a,b) => {
-    return new Date(b.date) - new Date(a.date)
+  }).sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
   });
 });
 

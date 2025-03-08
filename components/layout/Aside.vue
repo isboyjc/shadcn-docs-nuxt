@@ -41,19 +41,17 @@ defineProps<{ isMobile: boolean }>();
 const { navDirFromPath } = useContentHelpers();
 const { navigation: navigationSource } = useContent();
 const config = useConfig();
-const route = useRoute()
+const route = useRoute();
 
 const navigation = computed(() => {
-  console.log(navigationSource.value)
-  let docs = []
-  navigationSource.value.forEach(v => {
-    if(v._path === '/docs'){
-      docs.push(...v.children)
+  let docs = [];
+  navigationSource.value.forEach((v) => {
+    if (v._path === '/docs') {
+      docs.push(...v.children);
     }
-  })
-  return docs
+  });
+  return docs;
 });
-console.log(navigation.value)
 
 const tree = computed(() => {
   const route = useRoute();

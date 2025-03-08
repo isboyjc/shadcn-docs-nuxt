@@ -90,12 +90,21 @@ interface DefaultConfig {
     };
   };
   footer: {
-    credits: string;
+    copyright?: string;
+    description?: string;
     links: ({
       icon: string;
-      title: string;
+      title?: string;
       to: string;
       target: string;
+    })[];
+    linkGroups?: ({
+      title: string;
+      links: ({
+        title: string;
+        to: string;
+        target: string;
+      })[];
     })[];
   };
   toc: {

@@ -18,27 +18,27 @@ const { navigation: navigationSource } = useContent();
 const config = useConfig();
 
 const navigation = computed(() => {
-  console.log(navigationSource.value)
-  let information = []
-  navigationSource.value.forEach(v => {
-    if(v._path === '/information'){
-      information.push(...v.children)
+  let information = [];
+  navigationSource.value.forEach((v) => {
+    if (v._path === '/information') {
+      information.push(...v.children);
     }
-  })
-  return information.sort((a,b) => b.title - a.title)
+  });
+  return information.sort((a, b) => b.title - a.title);
 });
-console.log(navigation.value)
 
 // 递归排序函数
 function sortNavigationByTitle(navigation: any[]): any[] {
-  if (!navigation || !Array.isArray(navigation)) return navigation;
+  if (!navigation || !Array.isArray(navigation))
+    return navigation;
 
   return [...navigation].sort((a, b) => {
-    if (!a.title || !b.title) return 0;
+    if (!a.title || !b.title)
+      return 0;
     return b.title.localeCompare(a.title, 'zh-CN');
   }).map(item => ({
     ...item,
-    children: item.children ? sortNavigationByTitle(item.children) : undefined
+    children: item.children ? sortNavigationByTitle(item.children) : undefined,
   }));
 }
 
@@ -49,7 +49,7 @@ const tree = computed(() => {
     const leveledPath = path.splice(0, 2).join('/');
 
     const dir = navDirFromPath(leveledPath, navigationSource.value);
-    
+
     return sortNavigationByTitle(dir ?? []);
   }
 

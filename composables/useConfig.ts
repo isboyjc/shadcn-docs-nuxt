@@ -125,8 +125,10 @@ const defaultConfig: DefaultConfig = {
     },
   },
   footer: {
-    credits: '',
+    copyright: '',
+    description: '',
     links: [],
+    linkGroups: [],
   },
   toc: {
     enable: true,

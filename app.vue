@@ -13,6 +13,7 @@
     >
       <aside v-if="page.aside ?? true" class="fixed top-[102px] z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 overflow-y-auto md:sticky md:top-[60px] md:block">
         <LayoutAsideInformation v-if="route.path.startsWith('/information')" :is-mobile="false" />
+        <LayoutAsideInformation v-else-if="route.path.startsWith('/mcps')" :is-mobile="false" />
         <LayoutAside v-else :is-mobile="false" />
       </aside>
       <NuxtPage />
@@ -29,10 +30,11 @@ import { Toaster } from '@/components/ui/toast';
 
 // 白名单路径正则
 const whiteList = [
-  /^\/information$/,  // 仅匹配 /information
-  /^\/posts.*/,       // 匹配 /posts 及其子路径
-  /^\/sites.*/,       // 匹配 /sites 及其子路径
-  /^\/$/             // 仅匹配根路径
+  /^\/information$/, // 仅匹配 /information
+  /^\/mcps$/, // 仅匹配 /information
+  /^\/posts.*/, // 匹配 /posts 及其子路径
+  /^\/sites.*/, // 匹配 /sites 及其子路径
+  /^\/$/, // 仅匹配根路径
 ];
 
 // 检查路径是否在白名单中

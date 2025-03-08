@@ -23,7 +23,7 @@ export default defineAppConfig({
       enable: false,
       showClose: true,
       content: 'Welcome to **4AGI**',
-      to: 'https://github.com/4agi-net/4agi',
+      to: 'https://github.com/4agi-net/4agi.net',
       target: '_blank',
       border: true,
     },
@@ -102,7 +102,7 @@ export default defineAppConfig({
       codeCopyIcon: 'lucide:copy',
       editLink: {
         enable: true,
-        pattern: 'https://github.com/4agi-net/4agi/edit/main/content/:path',
+        pattern: 'https://github.com/4agi-net/4agi.net/edit/main/content/:path',
         text: 'Edit this page',
         icon: 'lucide:square-pen',
         placement: ['docsFooter', 'toc'],
@@ -158,7 +158,7 @@ export default defineAppConfig({
       description,
       links: [{
         icon: 'lucide:github',
-        to: 'https://github.com/4agi-net/4agi',
+        to: 'https://github.com/4agi-net/4agi.net',
         target: '_blank',
       }, {
         icon: 'lucide:twitter',
@@ -240,13 +240,13 @@ export default defineAppConfig({
       links: [{
         title: 'Star on GitHub',
         icon: 'lucide:star',
-        to: 'https://github.com/4agi-net/4agi',
+        to: 'https://github.com/4agi-net/4agi.net',
         target: '_blank',
         showLinkIcon: true,
       }, {
         title: 'Create Issues',
         icon: 'lucide:circle-dot',
-        to: 'https://github.com/4agi-net/4agi/issues',
+        to: 'https://github.com/4agi-net/4agi.net/issues',
         target: '_blank',
         showLinkIcon: true,
       }],

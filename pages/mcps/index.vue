@@ -57,18 +57,18 @@
               </UiBadge>
             </UiButton>
             <UiButton
-              v-for="category in categories"
-              :key="category.id"
+              v-for="category in mcpsCategories"
+              :key="category.name"
               variant="ghost"
               size="sm"
               class="justify-start px-3"
-              :class="{ '!bg-primary/10 !font-medium !text-primary': activeCategory === category.id }"
-              @click="setActiveCategory(category.id)"
+              :class="{ '!bg-primary/10 !font-medium !text-primary': activeCategory === category.name }"
+              @click="setActiveCategory(category.name)"
             >
-              <Icon :name="getCategoryIcon(category.id)" class="mr-2 size-4" :class="getCategoryIconColorClass(category.id)" />
+              <Icon :name="getCategoryIcon(category.name)" class="mr-2 size-4" />
               {{ category.name }}
-              <UiBadge v-if="activeCategory === category.id || activeCategory === 'all'" variant="outline" class="ml-auto">
-                {{ getCategoryCount(category.id) }}
+              <UiBadge v-if="activeCategory === category.name || activeCategory === 'all'" variant="outline" class="ml-auto">
+                {{ getCategoryCount(category.name) }}
               </UiBadge>
             </UiButton>
           </div>
@@ -94,7 +94,7 @@
           <p class="text-sm text-muted-foreground">
             共收录 <span class="font-medium text-foreground">{{ filteredMcps.length }}</span> 个MCP
             <span v-if="activeCategory !== 'all'">
-              在 <span class="font-medium text-foreground">{{ getCategoryName(activeCategory) }}</span> 分类下
+              在 <span class="font-medium text-foreground">{{ activeCategory }}</span> 分类下
             </span>
             <span v-if="searchQuery">
               匹配 <span class="font-medium text-foreground">"{{ searchQuery }}"</span>
@@ -118,19 +118,18 @@
         >
           <UiCard
             v-for="mcp in filteredMcps"
-            :key="mcp.id"
+            :key="mcp.title"
             class="group h-full overflow-hidden transition-all hover:shadow-md"
             :class="{ compact: isCompactGrid }"
           >
-            <NuxtLink :to="mcp.url" target="_blank" class="block h-full">
+            <NuxtLink :to="mcp._path" target="_blank" class="block h-full">
               <UiCardHeader :class="{ 'p-3 pb-2': isCompactGrid, 'p-4 pb-2': !isCompactGrid }">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-2">
-                    <div class="flex size-8 items-center justify-center rounded-md border" :class="getCategoryBorderClass(mcp.category)">
+                    <div class="flex size-8 items-center justify-center rounded-md border">
                       <Icon
                         :name="getCategoryIcon(mcp.category)"
                         class="size-4"
-                        :class="getCategoryIconColorClass(mcp.category)"
                       />
                     </div>
                     <UiCardTitle :class="{ 'text-base': isCompactGrid }">
@@ -163,10 +162,9 @@
                     class="flex-shrink-0"
                     :class="[
                       isCompactGrid ? 'px-1.5 py-0 text-[10px]' : 'py-0 text-xs',
-                      getCategoryColorClass(mcp.category),
                     ]"
                   >
-                    {{ getCategoryName(mcp.category) }}
+                    {{ mcp.category }}
                   </UiBadge>
                 </div>
               </UiCardFooter>
@@ -194,6 +192,7 @@
 
 <script setup lang="ts">
 import ContentHero from '@/components/content/Hero.vue';
+import { mcpsCategories } from '@/lib/config';
 
 interface PageData {
   title: string;
@@ -221,259 +220,49 @@ const pageData = ref<PageData>({
   }],
 });
 
-// 分类数据
-const categories = [
-  { id: 'survival', name: '生存服务器' },
-  { id: 'creative', name: '创造服务器' },
-  { id: 'minigame', name: '小游戏服务器' },
-  { id: 'rpg', name: 'RPG服务器' },
-  { id: 'skyblock', name: '空岛服务器' },
-  { id: 'modded', name: '模组服务器' },
-];
+const { data } = useAsyncData('content', async () => {
+  return queryContent('/').find();
+});
 
-// MCP数据
-const mcps = [
-  // 生存服务器
-  {
-    id: 'hypixel',
-    title: 'Hypixel',
-    description: '全球最大的Minecraft服务器之一，提供各种小游戏和生存模式',
-    provider: 'Hypixel Inc.',
-    category: 'survival',
-    url: 'https://hypixel.net',
-  },
-  {
-    id: 'cubecraft',
-    title: 'CubeCraft',
-    description: '提供多种小游戏和生存模式的热门Minecraft服务器',
-    provider: 'CubeCraft Games',
-    category: 'survival',
-    url: 'https://cubecraft.net',
-  },
-  {
-    id: 'mineplex',
-    title: 'Mineplex',
-    description: '大型Minecraft服务器，提供独特的小游戏和生存体验',
-    provider: 'Mineplex LLC',
-    category: 'survival',
-    url: 'https://mineplex.com',
-  },
-  {
-    id: 'wynncraft',
-    title: 'Wynncraft',
-    description: '最大的Minecraft MMORPG服务器，提供丰富的任务和冒险',
-    provider: 'Wynncraft',
-    category: 'rpg',
-    url: 'https://wynncraft.com',
-  },
-  {
-    id: 'manacube',
-    title: 'ManaCube',
-    description: '提供多种游戏模式的Minecraft服务器，包括生存和小游戏',
-    provider: 'ManaCube',
-    category: 'survival',
-    url: 'https://manacube.com',
-  },
+const mcps = computed(() => {
+  if (!data.value)
+    return [];
 
-  // 创造服务器
-  {
-    id: 'buildtheearth',
-    title: 'Build The Earth',
-    description: '致力于1:1比例重建地球的创造性Minecraft项目',
-    provider: 'BTE Team',
-    category: 'creative',
-    url: 'https://buildtheearth.net',
-  },
-  {
-    id: 'plotsquared',
-    title: 'PlotSquared',
-    description: '基于地块的创造服务器，让玩家在自己的空间中自由建造',
-    provider: 'PlotSquared',
-    category: 'creative',
-    url: 'https://plotsquared.com',
-  },
-  {
-    id: 'creativefun',
-    title: 'CreativeFun',
-    description: '专注于创造模式的服务器，提供各种建筑工具和插件',
-    provider: 'CreativeFun',
-    category: 'creative',
-    url: 'https://creativefun.net',
-  },
+  let mcpsData = [];
 
-  // 小游戏服务器
-  {
-    id: 'thepit',
-    title: 'The Pit',
-    description: 'Hypixel上的热门PVP小游戏，玩家在竞技场中战斗',
-    provider: 'Hypixel Inc.',
-    category: 'minigame',
-    url: 'https://hypixel.net/the-pit',
-  },
-  {
-    id: 'bedwars',
-    title: 'Bed Wars',
-    description: '保护你的床并摧毁敌人的床的团队PVP游戏',
-    provider: 'Various',
-    category: 'minigame',
-    url: 'https://minecraft-server.net/bedwars',
-  },
-  {
-    id: 'skywars',
-    title: 'Sky Wars',
-    description: '在浮空岛上战斗的PVP小游戏，最后存活者获胜',
-    provider: 'Various',
-    category: 'minigame',
-    url: 'https://minecraft-server.net/skywars',
-  },
+  data.value.forEach((v) => {
+    if (v._path?.startsWith('/mcps') && v._type == 'markdown') {
+      mcpsData.push(v);
+    }
+  });
 
-  // RPG服务器
-  {
-    id: 'mcrpg',
-    title: 'McRPG',
-    description: '提供丰富RPG体验的服务器，包括职业、技能和任务',
-    provider: 'McRPG',
-    category: 'rpg',
-    url: 'https://mcrpg.com',
-  },
-  {
-    id: 'lordofthecraft',
-    title: 'Lord of the Craft',
-    description: '最古老的Minecraft角色扮演服务器之一，提供丰富的世界观和故事',
-    provider: 'LotC',
-    category: 'rpg',
-    url: 'https://lordofthecraft.net',
-  },
-
-  // 空岛服务器
-  {
-    id: 'skyblock',
-    title: 'SkyBlock',
-    description: '经典的空岛生存模式，从一个小岛开始发展',
-    provider: 'Various',
-    category: 'skyblock',
-    url: 'https://minecraft-server.net/skyblock',
-  },
-  {
-    id: 'oneblock',
-    title: 'OneBlock',
-    description: '从一个方块开始的空岛变种，方块会不断生成新资源',
-    provider: 'Various',
-    category: 'skyblock',
-    url: 'https://minecraft-server.net/oneblock',
-  },
-
-  // 模组服务器
-  {
-    id: 'ftb',
-    title: 'Feed The Beast',
-    description: '提供各种模组包的服务器网络，适合喜欢科技和魔法的玩家',
-    provider: 'FTB',
-    category: 'modded',
-    url: 'https://feed-the-beast.com',
-  },
-  {
-    id: 'tekkit',
-    title: 'Tekkit',
-    description: '专注于科技模组的服务器，提供工业和自动化体验',
-    provider: 'Technic',
-    category: 'modded',
-    url: 'https://technicpack.net',
-  },
-  {
-    id: 'pixelmon',
-    title: 'Pixelmon',
-    description: '结合Minecraft和宝可梦的模组服务器，可以捕捉和训练宝可梦',
-    provider: 'Pixelmon',
-    category: 'modded',
-    url: 'https://pixelmonmod.com',
-  },
-];
+  return mcpsData;
+});
+console.log(mcps.value);
 
 // 状态管理
 const activeCategory = ref('all');
 const searchQuery = ref('');
 const isCompactGrid = ref(true);
 
-// 根据分类ID获取分类名称
-function getCategoryName(categoryId: string): string {
-  const category = categories.find(c => c.id === categoryId);
-  return category ? category.name : '';
-}
-
 // 获取分类图标
-function getCategoryIcon(categoryId: string): string {
-  const iconMap: Record<string, string> = {
-    survival: 'lucide:tent',
-    creative: 'lucide:palette',
-    minigame: 'lucide:gamepad-2',
-    rpg: 'lucide:swords',
-    skyblock: 'lucide:cloud',
-    modded: 'lucide:puzzle',
-  };
-  return iconMap[categoryId] || 'lucide:folder';
+function getCategoryIcon(category: string): string {
+  return mcpsCategories.find(v => v.name === category)?.icon || 'tabler:server';
 }
 
 // 获取分类颜色
-function getCategoryColor(categoryId: string): string {
-  const colorMap: Record<string, string> = {
-    survival: '#4ade80', // 绿色
-    creative: '#f472b6', // 粉色
-    minigame: '#60a5fa', // 蓝色
-    rpg: '#f59e0b', // 橙色
-    skyblock: '#a78bfa', // 紫色
-    modded: '#ef4444', // 红色
-  };
-  return colorMap[categoryId] || '#94a3b8'; // 默认灰色
-}
-
-// 获取分类颜色类
-function getCategoryColorClass(categoryId: string): string {
-  const colorClassMap: Record<string, string> = {
-    survival: 'border-green-500 text-green-600 dark:text-green-400',
-    creative: 'border-pink-500 text-pink-600 dark:text-pink-400',
-    minigame: 'border-blue-500 text-blue-600 dark:text-blue-400',
-    rpg: 'border-amber-500 text-amber-600 dark:text-amber-400',
-    skyblock: 'border-purple-500 text-purple-600 dark:text-purple-400',
-    modded: 'border-red-500 text-red-600 dark:text-red-400',
-  };
-  return colorClassMap[categoryId] || '';
-}
-
-// 获取分类图标颜色类
-function getCategoryIconColorClass(categoryId: string): string {
-  const colorClassMap: Record<string, string> = {
-    survival: 'text-green-500 dark:text-green-400',
-    creative: 'text-pink-500 dark:text-pink-400',
-    minigame: 'text-blue-500 dark:text-blue-400',
-    rpg: 'text-amber-500 dark:text-amber-400',
-    skyblock: 'text-purple-500 dark:text-purple-400',
-    modded: 'text-red-500 dark:text-red-400',
-  };
-  return colorClassMap[categoryId] || '';
-}
-
-// 获取分类边框颜色类
-function getCategoryBorderClass(categoryId: string): string {
-  const colorClassMap: Record<string, string> = {
-    survival: 'border-green-200 bg-green-50 dark:border-green-900 dark:bg-green-950',
-    creative: 'border-pink-200 bg-pink-50 dark:border-pink-900 dark:bg-pink-950',
-    minigame: 'border-blue-200 bg-blue-50 dark:border-blue-900 dark:bg-blue-950',
-    rpg: 'border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-amber-950',
-    skyblock: 'border-purple-200 bg-purple-50 dark:border-purple-900 dark:bg-purple-950',
-    modded: 'border-red-200 bg-red-50 dark:border-red-900 dark:bg-red-950',
-  };
-  return colorClassMap[categoryId] || 'border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900';
+function getCategoryColor(category: string): string {
+  return mcpsCategories.find(v => v.name === category)?.color || '#94a3b8';
 }
 
 // 获取分类产品数量
-function getCategoryCount(categoryId: string): number {
-  return mcps.filter(mcp => mcp.category === categoryId).length;
+function getCategoryCount(category: string): number {
+  return mcps.value.filter(mcp => mcp.category === category).length;
 }
 
 // 设置当前活动分类
-function setActiveCategory(categoryId: string): void {
-  activeCategory.value = categoryId;
+function setActiveCategory(category: string): void {
+  activeCategory.value = category;
 }
 
 // 切换网格大小
@@ -489,7 +278,7 @@ function resetFilters(): void {
 
 // 过滤产品列表
 const filteredMcps = computed(() => {
-  let result = mcps;
+  let result = mcps.value;
 
   // 按分类筛选
   if (activeCategory.value !== 'all') {

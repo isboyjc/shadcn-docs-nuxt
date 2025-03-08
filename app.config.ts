@@ -174,8 +174,8 @@ export default defineAppConfig({
           title: '站点',
           links: [
             {
-              title: '导航',
-              to: '/sites',
+              title: '社区',
+              to: '/posts',
               target: '_self',
             },
             {
@@ -184,8 +184,13 @@ export default defineAppConfig({
               target: '_self',
             },
             {
-              title: '社区',
-              to: '/posts',
+              title: '导航',
+              to: '/sites',
+              target: '_self',
+            },
+            {
+              title: 'MCPs',
+              to: '/mcps',
               target: '_self',
             },
           ],
